@@ -1,8 +1,10 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../registration/registration_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -35,6 +37,13 @@ class _LoginWidgetState extends State<LoginWidget> {
       autovalidateMode: AutovalidateMode.always,
       child: Scaffold(
         key: scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.primaryColor,
+          automaticallyImplyLeading: true,
+          actions: [],
+          centerTitle: true,
+          elevation: 4,
+        ),
         body: SafeArea(
           child: Stack(
             children: [
@@ -63,7 +72,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     flex: 2,
                     child: Material(
                       color: Colors.transparent,
-                      elevation: 5,
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -75,7 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
                             color: Color(0xFF0DA415),
-                            width: 5,
+                            width: 2,
                           ),
                         ),
                         child: Padding(
@@ -269,8 +278,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     Padding(
                                       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          if (!formKey.currentState
+                                              .validate()) {
+                                            return;
+                                          }
+                                          final user = await signInWithEmail(
+                                            context,
+                                            emailTextController.text,
+                                            passwordTextController.text,
+                                          );
+                                          if (user == null) {
+                                            return;
+                                          }
+
+                                          await Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RegistrationWidget(),
+                                            ),
+                                            (r) => false,
+                                          );
                                         },
                                         text: 'Sign in',
                                         options: FFButtonOptions(
@@ -395,9 +424,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       ),
                                                     ),
                                                     FFButtonWidget(
-                                                      onPressed: () {
-                                                        print(
-                                                            'Button pressed ...');
+                                                      onPressed: () async {
+                                                        final user =
+                                                            await signInWithGoogle(
+                                                                context);
+                                                        if (user == null) {
+                                                          return;
+                                                        }
+                                                        await Navigator
+                                                            .pushAndRemoveUntil(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                RegistrationWidget(),
+                                                          ),
+                                                          (r) => false,
+                                                        );
                                                       },
                                                       text: 'Sign in',
                                                       icon: Icon(
