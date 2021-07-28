@@ -29,20 +29,64 @@ class _ProductsWidgetState extends State<ProductsWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: false,
-        title: Text(
-          'faMA Market',
-          textAlign: TextAlign.justify,
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Montserrat',
-            color: FlutterFlowTheme.primaryColor,
-            fontSize: 32,
+        leading: Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.tertiaryColor,
+          ),
+          child: IconButton(
+            onPressed: () {
+              print('IconButton pressed ...');
+            },
+            icon: Icon(
+              Icons.dehaze,
+              color: FlutterFlowTheme.primaryColor,
+              size: 30,
+            ),
+            iconSize: 30,
           ),
         ),
-        actions: [],
+        title: Container(
+          width: double.infinity,
+          height: 60,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.tertiaryColor,
+          ),
+          child: Align(
+            alignment: Alignment(-1, -0.25),
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: 100,
+              height: 100,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+        ),
+        actions: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.tertiaryColor,
+            ),
+            child: IconButton(
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
+              icon: Icon(
+                Icons.shopping_cart_sharp,
+                color: FlutterFlowTheme.primaryColor,
+                size: 30,
+              ),
+              iconSize: 30,
+            ),
+          )
+        ],
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: Color(0xFF262D34),
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -71,14 +115,14 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         labelText: 'Search for categories,products,etc...',
                         labelStyle: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Poppins',
-                          color: Color(0xFF95A1AC),
+                          color: FlutterFlowTheme.primaryColor,
                         ),
                         hintText: 'Search by name, location etc...',
                         hintStyle: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Poppins',
-                          color: Color(0xFF95A1AC),
+                          color: FlutterFlowTheme.primaryColor,
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xFF262D34),
                             width: 2,
@@ -90,7 +134,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                             topRight: Radius.circular(8),
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xFF262D34),
                             width: 2,
@@ -104,12 +148,12 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         ),
                         prefixIcon: Icon(
                           Icons.search_rounded,
-                          color: Color(0xFF95A1AC),
+                          color: FlutterFlowTheme.primaryColor,
                         ),
                       ),
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Poppins',
-                        color: Color(0xFF95A1AC),
+                        color: FlutterFlowTheme.primaryColor,
                       ),
                     ),
                   ),
@@ -126,229 +170,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                   'Product Categories',
                   style: FlutterFlowTheme.bodyText2.override(
                     fontFamily: 'Poppins',
-                    color: FlutterFlowTheme.tertiaryColor,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 12, 1, 0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.primaryColor,
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/crop1.png',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: Text(
-                                'Crops',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.primaryColor,
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/cow.png',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: Text(
-                                'Animals',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.primaryColor,
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/farmpower.png',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: Text(
-                                'Farm Power',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.primaryColor,
-                                image: DecorationImage(
-                                  image: Image.asset(
-                                    'assets/images/ph.png',
-                                  ).image,
-                                ),
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/600',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: Text(
-                                'Public Health',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  'Upcoming Classes',
-                  style: FlutterFlowTheme.bodyText2.override(
-                    fontFamily: 'Poppins',
+                    color: FlutterFlowTheme.primaryColor,
                   ),
                 )
               ],
@@ -369,13 +191,13 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           image: Image.asset(
-                            'assets/images/john-arano-h4i9G-de7Po-unsplash.jpg',
+                            'assets/images/GMOs.jpeg',
                           ).image,
                         ),
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 3,
-                            color: Color(0x33000000),
+                            color: FlutterFlowTheme.primaryColor,
                             offset: Offset(0, 2),
                           )
                         ],
@@ -411,20 +233,22 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Class Name',
+                                            'Crop Production',
                                             style: FlutterFlowTheme.title2
                                                 .override(
                                               fontFamily: 'Poppins',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
+                                              fontSize: 18,
                                             ),
                                           ),
                                           Text(
-                                            '30m | High Intensity | Indoor/Outdoor',
+                                            'Herbicides/Pesticides/Foliars\\nStickers/Seeds etc',
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
-                                              color: Color(0xFF39D2C0),
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
                                             ),
                                           )
                                         ],
@@ -437,7 +261,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           onPressed: () {
                                             print('Button-Reserve pressed ...');
                                           },
-                                          text: 'Reserve',
+                                          text: 'Shop Now',
                                           icon: Icon(
                                             Icons.add_rounded,
                                             color:
@@ -447,12 +271,13 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           options: FFButtonOptions(
                                             width: 120,
                                             height: 40,
-                                            color: Color(0xFF39D2C0),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             textStyle: GoogleFonts.getFont(
-                                              'Lexend Deca',
+                                              'Roboto',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
-                                              fontSize: 14,
+                                              fontSize: 13,
                                             ),
                                             elevation: 3,
                                             borderSide: BorderSide(
@@ -481,9 +306,9 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                       decoration: BoxDecoration(
                         color: Color(0xFF090F13),
                         image: DecorationImage(
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.fill,
                           image: Image.asset(
-                            'assets/images/john-arano-h4i9G-de7Po-unsplash.jpg',
+                            'assets/images/cows.jpg',
                           ).image,
                         ),
                         boxShadow: [
@@ -525,20 +350,22 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Class Name',
+                                            'Livestock Production',
                                             style: FlutterFlowTheme.title2
                                                 .override(
                                               fontFamily: 'Poppins',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
+                                              fontSize: 18,
                                             ),
                                           ),
                                           Text(
-                                            '30m | High Intensity | Indoor/Outdoor',
+                                            'Animal feeds/Suppliments\\n/Medicines/Equipment etc',
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
-                                              color: Color(0xFF39D2C0),
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
                                             ),
                                           )
                                         ],
@@ -551,7 +378,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           onPressed: () {
                                             print('Button-Reserve pressed ...');
                                           },
-                                          text: 'Reserve',
+                                          text: 'Shop Now',
                                           icon: Icon(
                                             Icons.add_rounded,
                                             color:
@@ -561,12 +388,14 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           options: FFButtonOptions(
                                             width: 120,
                                             height: 40,
-                                            color: Color(0xFF39D2C0),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             textStyle: GoogleFonts.getFont(
-                                              'Lexend Deca',
+                                              'Roboto',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
-                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
                                             ),
                                             elevation: 3,
                                             borderSide: BorderSide(
@@ -597,7 +426,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           image: Image.asset(
-                            'assets/images/john-arano-h4i9G-de7Po-unsplash.jpg',
+                            'assets/images/tractor.png',
                           ).image,
                         ),
                         boxShadow: [
@@ -639,20 +468,22 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Class Name',
+                                            'Farm Power',
                                             style: FlutterFlowTheme.title2
                                                 .override(
                                               fontFamily: 'Poppins',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
+                                              fontSize: 18,
                                             ),
                                           ),
                                           Text(
-                                            '30m | High Intensity | Indoor/Outdoor',
+                                            'Mechanical/Solar/Manual/\\nElectrical equipment etc',
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Poppins',
-                                              color: Color(0xFF39D2C0),
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
                                             ),
                                           )
                                         ],
@@ -665,7 +496,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           onPressed: () {
                                             print('Button-Reserve pressed ...');
                                           },
-                                          text: 'Reserve',
+                                          text: 'Shop Now',
                                           icon: Icon(
                                             Icons.add_rounded,
                                             color:
@@ -675,12 +506,132 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                           options: FFButtonOptions(
                                             width: 120,
                                             height: 40,
-                                            color: Color(0xFF39D2C0),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             textStyle: GoogleFonts.getFont(
-                                              'Lexend Deca',
+                                              'Roboto',
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
-                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                            ),
+                                            elevation: 3,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius: 8,
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        image: DecorationImage(
+                          fit: BoxFit.fitWidth,
+                          image: Image.asset(
+                            'assets/images/mosquito (1).png',
+                          ).image,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 3,
+                            color: Color(0x33000000),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF090F13),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8),
+                              topLeft: Radius.circular(0),
+                              topRight: Radius.circular(0),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Public Health',
+                                            style: FlutterFlowTheme.title2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: FlutterFlowTheme
+                                                  .tertiaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Environmental health/\\nCommunity health etc',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        FFButtonWidget(
+                                          onPressed: () {
+                                            print('Button-Reserve pressed ...');
+                                          },
+                                          text: 'Shop Now',
+                                          icon: Icon(
+                                            Icons.add_rounded,
+                                            color:
+                                                FlutterFlowTheme.tertiaryColor,
+                                            size: 15,
+                                          ),
+                                          options: FFButtonOptions(
+                                            width: 120,
+                                            height: 40,
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            textStyle: GoogleFonts.getFont(
+                                              'Roboto',
+                                              color: FlutterFlowTheme
+                                                  .tertiaryColor,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
                                             ),
                                             elevation: 3,
                                             borderSide: BorderSide(
