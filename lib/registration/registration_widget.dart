@@ -1,10 +1,13 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_drop_down_template.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../products/products_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RegistrationWidget extends StatefulWidget {
   RegistrationWidget({Key key}) : super(key: key);
@@ -17,14 +20,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   String dropDownValue;
   TextEditingController textController1;
   TextEditingController textController2;
-  TextEditingController textController3;
+  TextEditingController textFieldEmailController;
+  TextEditingController textFieldmobileController;
   TextEditingController textController4;
+  bool passwordVisibility;
+  TextEditingController textFieldpasswordController;
+  bool textFieldpasswordVisibility;
   TextEditingController textController5;
-  bool passwordVisibility1;
   TextEditingController textController6;
-  bool passwordVisibility2;
-  TextEditingController textController7;
-  TextEditingController textController8;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -32,14 +35,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     super.initState();
     textController1 = TextEditingController();
     textController2 = TextEditingController();
-    textController3 = TextEditingController();
+    textFieldEmailController = TextEditingController();
+    textFieldmobileController = TextEditingController();
     textController4 = TextEditingController();
+    passwordVisibility = false;
+    textFieldpasswordController = TextEditingController();
+    textFieldpasswordVisibility = false;
     textController5 = TextEditingController();
-    passwordVisibility1 = false;
     textController6 = TextEditingController();
-    passwordVisibility2 = false;
-    textController7 = TextEditingController();
-    textController8 = TextEditingController();
   }
 
   @override
@@ -198,7 +201,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController3,
+                            controller: textFieldEmailController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Email address',
@@ -243,7 +246,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController4,
+                            controller: textFieldmobileController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Mobile Number',
@@ -300,8 +303,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController5,
-                            obscureText: !passwordVisibility1,
+                            controller: textFieldpasswordController,
+                            obscureText: !textFieldpasswordVisibility,
                             decoration: InputDecoration(
                               hintText: 'Create Password',
                               hintStyle: FlutterFlowTheme.bodyText1.override(
@@ -334,11 +337,11 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                               contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                               suffixIcon: InkWell(
                                 onTap: () => setState(
-                                  () => passwordVisibility1 =
-                                      !passwordVisibility1,
+                                  () => textFieldpasswordVisibility =
+                                      !textFieldpasswordVisibility,
                                 ),
                                 child: Icon(
-                                  passwordVisibility1
+                                  textFieldpasswordVisibility
                                       ? Icons.visibility_outlined
                                       : Icons.visibility_off_outlined,
                                   color: Color(0xFF757575),
@@ -360,8 +363,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController6,
-                            obscureText: !passwordVisibility2,
+                            controller: textController4,
+                            obscureText: !passwordVisibility,
                             decoration: InputDecoration(
                               hintText: 'Confirm Password',
                               hintStyle: FlutterFlowTheme.bodyText1.override(
@@ -394,11 +397,11 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                               contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                               suffixIcon: InkWell(
                                 onTap: () => setState(
-                                  () => passwordVisibility2 =
-                                      !passwordVisibility2,
+                                  () =>
+                                      passwordVisibility = !passwordVisibility,
                                 ),
                                 child: Icon(
-                                  passwordVisibility2
+                                  passwordVisibility
                                       ? Icons.visibility_outlined
                                       : Icons.visibility_off_outlined,
                                   color: Color(0xFF757575),
@@ -432,7 +435,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController7,
+                            controller: textController5,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'County',
@@ -477,7 +480,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: TextFormField(
-                            controller: textController8,
+                            controller: textController6,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Town',
@@ -572,18 +575,33 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 15, 30, 25),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        final user = await signInWithEmail(
+                          context,
+                          textFieldEmailController.text,
+                          textFieldpasswordController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
+
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegistrationWidget(),
+                          ),
+                          (r) => false,
+                        );
                       },
                       text: 'Register',
                       options: FFButtonOptions(
-                        width: 70,
-                        height: 40,
+                        width: double.infinity,
+                        height: 25,
                         color: FlutterFlowTheme.primaryColor,
                         textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
                         elevation: 5,
@@ -594,6 +612,37 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                         borderRadius: 12,
                       ),
                     ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment(-0.07, 0.96),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        duration: Duration(milliseconds: 5),
+                        reverseDuration: Duration(milliseconds: 5),
+                        child: ProductsWidget(),
+                      ),
+                    );
+                  },
+                  text: 'Skip to Main Page',
+                  options: FFButtonOptions(
+                    width: 250,
+                    height: 40,
+                    color: FlutterFlowTheme.primaryColor,
+                    textStyle: FlutterFlowTheme.subtitle2.override(
+                      fontFamily: 'Roboto',
+                      color: Colors.white,
+                    ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 12,
                   ),
                 ),
               )
